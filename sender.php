@@ -36,14 +36,10 @@ class sender
     public function send($mail, $subject, $text)
     {
         $message = new \Swift_Message();
-
-        // Set a "subject"
         $message->setSubject($subject);
-
-        // Set the "From address"
-        $message->setFrom($mail);
-
+        $message->setFrom($this->config['from']);
         $message->setBody($text);
+        $message->setTo($mail);
 
         return $this->mailer->send($message);
     }
@@ -66,6 +62,8 @@ class sender
      */
     public function init(array $config)
     {
+        $this->config = $config;
+
         $transport = (new \Swift_SmtpTransport($config['host'], $config['port']))
             ->setUsername($config['login'])
             ->setPassword($config['pass'])
