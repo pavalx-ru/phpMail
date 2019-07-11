@@ -72,11 +72,12 @@ class sender
         return $this;
     }
 
-    public static function instance($config = []): self
+    public static function instance($config = []):self
     {
         if(!static::$instance){
             static::$instance = new static($config);
         }
+        return static::$instance;
     }
 
 
