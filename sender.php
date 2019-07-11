@@ -7,6 +7,9 @@ include_once('vendor/autoload.php');
 
 class sender
 {
+    /**
+     * @var \Swift_Mailer
+     */
     protected $mailer;
     /**
      * @var array Конфигурация исходящего почтового ящика
